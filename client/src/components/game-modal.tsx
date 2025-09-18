@@ -15,18 +15,32 @@ export function GameModal({ isOpen, onClose, onComplete }: GameModalProps) {
   const gameInstanceRef = useRef<any>(null);
 
   useEffect(() => {
-    if (isOpen && gameContainerRef.current) {
-      // Initialize Phaser game
-      gameInstanceRef.current = initializeGame(gameContainerRef.current, onComplete);
-    }
+    if (isOpen) {
+      // Simple fallback: auto-complete after 3 seconds with click handler
+      const timeoutId = setTimeout(() => {
+        console.log("Auto-completing Play phase after 3 seconds");
+        onComplete();
+      }, 3000);
 
-    return () => {
-      // Cleanup game instance
-      if (gameInstanceRef.current) {
-        gameInstanceRef.current.destroy(true);
-        gameInstanceRef.current = null;
+      // Add click handler to the container for immediate completion
+      const handleClick = () => {
+        console.log("Play phase clicked - advancing to Conquer");
+        clearTimeout(timeoutId);
+        onComplete();
+      };
+
+      const container = gameContainerRef.current;
+      if (container) {
+        container.addEventListener('click', handleClick);
       }
-    };
+
+      return () => {
+        clearTimeout(timeoutId);
+        if (container) {
+          container.removeEventListener('click', handleClick);
+        }
+      };
+    }
   }, [isOpen, onComplete]);
 
   const handleClose = () => {
@@ -53,20 +67,26 @@ export function GameModal({ isOpen, onClose, onComplete }: GameModalProps) {
         
         <div 
           ref={gameContainerRef}
-          className="w-full h-96 bg-gradient-to-b from-blue-100 to-blue-200 flex items-center justify-center"
+          className="w-full h-96 bg-gradient-to-b from-blue-100 to-blue-200"
           data-testid="game-container"
+          style={{ position: 'relative' }}
         >
-          {/* Phaser game will be mounted here */}
-          <div className="text-center">
-            <div className="w-20 h-20 play-gradient rounded-full flex items-center justify-center mx-auto mb-4">
-              <Gamepad2 className="text-white text-3xl" />
+          {/* Play Phase Content */}
+          <div className="absolute inset-0 flex items-center justify-center text-center cursor-pointer">
+            <div>
+              <div className="w-20 h-20 play-gradient rounded-full flex items-center justify-center mx-auto mb-4">
+                <Gamepad2 className="text-white text-3xl" />
+              </div>
+              <h3 className="text-2xl font-bold mb-2">Water Purifier Simulation</h3>
+              <p className="text-muted-foreground mb-4">Coming Soon</p>
+              <p className="text-sm text-gray-600 max-w-md mb-4">
+                Build your own water purification system by selecting filters, 
+                testing water quality, and optimizing your design for maximum efficiency.
+              </p>
+              <p className="text-xs text-muted-foreground">
+                Click anywhere to continue or wait 3 seconds
+              </p>
             </div>
-            <h3 className="text-2xl font-bold mb-2">Play Simulation</h3>
-            <p className="text-muted-foreground mb-4">Coming Soon</p>
-            <p className="text-sm text-gray-600 max-w-md">
-              Build your own water purification system by selecting filters, 
-              testing water quality, and optimizing your design for maximum efficiency.
-            </p>
           </div>
         </div>
       </DialogContent>
