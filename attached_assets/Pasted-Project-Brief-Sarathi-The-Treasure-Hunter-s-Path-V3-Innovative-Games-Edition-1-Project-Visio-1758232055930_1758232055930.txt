@@ -1,0 +1,49 @@
+Project Brief: Sarathi - The Treasure Hunter's Path (V3 - Innovative Games Edition)
+1. Project Vision:
+Your task is to build a prototype for "Sarathi," an innovative, gamified learning platform for rural education. The core experience is a competitive "Treasure Hunter's Path". Students sign up and progress through subject "maps," completing chapters to earn "clues." A live leaderboard ranks students based on points. Teachers have a separate portal to create and manage assignments with deadlines, where late submissions lead to point deductions.
+
+2. Core Technologies:
+
+Frontend: HTML5, CSS3, JavaScript (ES6+).
+
+Authentication: Firebase Authentication.
+
+Database: Firebase Firestore with offline persistence.
+
+Gamification: Phaser.js for the final treasure hunt game.
+
+Offline Strategy: Service Workers for PWA functionality.
+
+3. Innovative Mini-Games to Implement:
+The platform will include a variety of engaging mini-games within each lesson:
+
+"Knowledge Run": An infinite runner for quick recall.
+
+"Discovery Lab": A crafting game for understanding relationships.
+
+"Concept Cannon": A physics puzzler for applying knowledge.
+
+Step-by-Step Build Plan
+Step 1: Setup & Full Authentication
+Set up the complete Firebase SDK (Firestore & Authentication). Create signup and login pages for "Student" and "Teacher" roles. Store user profiles in Firestore.
+
+Step 2: Build the Core Student Dashboard
+Build the student's main screen, which is a "Treasure Map" displaying chapters. Implement logic to show both available and completed chapters, making them replayable.
+
+Step 3: Implement the Innovative Mini-Game Engine
+Build the UI for a single lesson. For the prototype, implement the logic for two of the innovative mini-games: the "Knowledge Run" and the "Discovery Lab." On successful completion, award the student a unique "clue" and save it to their Firestore profile.
+
+Step 4: Build the Teacher Assignment Portal
+Create the UI for the teacher's portal. Implement a form for teachers to create assignments with deadlines and link them to a specific chapter, saving the data to Firestore.
+
+Step 5: Implement the Student Assignment System
+On the student's dashboard, create a section to view and submit assignments. Save submissions to Firestore with a timestamp.
+
+Step 6: Build the Points-Based Leaderboard
+Create a new page for the leaderboard. Write the Firebase query to rank students by points. Implement logic to deduct points for late assignment submissions.
+
+Step 7: Build the Final Treasure Hunt Game
+Using Phaser.js, create the final treasure hunt game where the collected clues are used to solve a puzzle and find the treasure. Winning this game should award a large number of points.
+
+Step 8: Integrate and Finalize PWA
+Connect all the components into a seamless flow. Finally, update the Service Worker to cache all application files for a complete offline experience.

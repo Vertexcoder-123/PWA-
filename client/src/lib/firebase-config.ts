@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { initializeFirestore, persistentLocalCache, persistentMultipleTabManager, enableNetwork, disableNetwork, connectFirestoreEmulator } from 'firebase/firestore';
+import { getAuth, connectAuthEmulator } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "demo-key",
@@ -20,17 +21,21 @@ export const db = initializeFirestore(app, {
   })
 });
 
+// Initialize Firebase Auth
+export const auth = getAuth(app);
+
 // Enable offline persistence and emulator setup
 export const initializeFirebaseServices = async () => {
   try {
-    // In development, connect to Firestore emulator if available
+    // In development, connect to emulators if available
     if (import.meta.env.DEV && import.meta.env.VITE_FIREBASE_EMULATOR_HOST) {
       connectFirestoreEmulator(db, import.meta.env.VITE_FIREBASE_EMULATOR_HOST, 8080);
+      connectAuthEmulator(auth, `http://${import.meta.env.VITE_FIREBASE_EMULATOR_HOST}:9099`);
     }
     
-    console.log('Firestore initialized with offline persistence');
+    console.log('Firebase services initialized with offline persistence');
   } catch (error) {
-    console.warn('Failed to initialize Firestore services:', error);
+    console.warn('Failed to initialize Firebase services:', error);
   }
 };
 

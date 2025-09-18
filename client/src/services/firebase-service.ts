@@ -8,7 +8,8 @@ import {
   where, 
   getDocs,
   serverTimestamp,
-  increment
+  increment,
+  arrayUnion
 } from 'firebase/firestore';
 import { db } from '@/lib/firebase-config';
 
@@ -121,7 +122,7 @@ export class FirebaseService {
     await updateDoc(userRef, {
       totalXp: increment(xpEarned),
       badges: increment(1),
-      completedTreasures: treasureId, // This would need array union in real implementation
+      completedTreasures: arrayUnion(treasureId),
       streak: increment(1),
       updatedAt: serverTimestamp(),
     });
