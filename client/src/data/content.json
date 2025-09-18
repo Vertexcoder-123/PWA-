@@ -1,0 +1,64 @@
+{
+  "id": "water-purifier",
+  "title": "Mission: Water Purifier",
+  "description": "Learn how water purification systems work and help design a clean water solution for your village.",
+  "difficulty": 3,
+  "xpReward": 500,
+  "learnCards": [
+    {
+      "title": "Understanding Water Contamination",
+      "content": "Water contamination occurs when harmful substances make water unsafe for drinking, cooking, or other uses. Common contaminants include bacteria, viruses, chemicals, and heavy metals. In rural areas, contamination often comes from agricultural runoff, improper waste disposal, and lack of sanitation infrastructure. Understanding the sources of contamination is the first step toward developing effective purification strategies.",
+      "image": "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
+    },
+    {
+      "title": "Physical Filtration Methods",
+      "content": "Physical filtration removes particles and sediments from water using barriers like sand, gravel, and cloth filters. These methods are effective for removing larger contaminants but may not eliminate bacteria or chemicals. Multi-stage filtration systems combine different materials to improve effectiveness. Common physical filters include slow sand filters, rapid sand filters, and membrane filters.",
+      "image": "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
+    },
+    {
+      "title": "Chemical Purification",
+      "content": "Chemical purification uses substances like chlorine, iodine, or water purification tablets to kill harmful microorganisms. This method is effective against bacteria and viruses but requires careful dosing to avoid harmful side effects. It's often combined with physical filtration for best results. Chemical treatment can also include coagulation and flocculation processes to remove dissolved particles.",
+      "image": "https://images.unsplash.com/photo-1576671081837-49000212a370?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
+    },
+    {
+      "title": "Advanced Purification Technologies",
+      "content": "Advanced methods include UV sterilization, reverse osmosis, and distillation. UV light kills microorganisms without chemicals, while reverse osmosis removes almost all contaminants. These technologies are more expensive but provide the highest level of purification. Other advanced methods include ozonation, activated carbon filtration, and ion exchange systems.",
+      "image": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
+    }
+  ],
+  "quizQuestions": [
+    {
+      "question": "What is the most common cause of water contamination in rural areas?",
+      "options": [
+        "Industrial pollution from factories",
+        "Agricultural runoff and improper waste disposal",
+        "Natural mineral deposits",
+        "Excessive rainfall"
+      ],
+      "correct": 1,
+      "explanation": "Agricultural runoff and improper waste disposal are the primary causes of water contamination in rural areas due to limited infrastructure and widespread farming activities that can introduce pesticides, fertilizers, and organic waste into water sources."
+    },
+    {
+      "question": "Which filtration method is most effective for removing bacteria and viruses?",
+      "options": [
+        "Sand filtration only",
+        "Cloth filtration",
+        "Combined chemical treatment and UV sterilization",
+        "Boiling water for 1 minute"
+      ],
+      "correct": 2,
+      "explanation": "Combined chemical treatment and UV sterilization provides the most comprehensive protection against microorganisms. While each method is effective individually, combining them ensures maximum pathogen removal and provides backup protection."
+    },
+    {
+      "question": "What is the main advantage of UV sterilization over chemical treatment?",
+      "options": [
+        "It's much cheaper to implement",
+        "It doesn't require electricity",
+        "It kills microorganisms without adding chemicals to the water",
+        "It works faster than chemical treatment"
+      ],
+      "correct": 2,
+      "explanation": "UV sterilization's main advantage is that it effectively kills microorganisms without introducing chemicals into the water supply. This means there are no chemical residues, taste changes, or potential health concerns from chemical additives, making it ideal for communities concerned about water quality and taste."
+    }
+  ]
+}
