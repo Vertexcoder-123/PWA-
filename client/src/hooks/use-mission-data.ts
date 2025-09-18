@@ -1,40 +1,86 @@
 import { useQuery } from "@tanstack/react-query";
-import missionContent from "@/data/content.json";
+import treasureContent from "@/data/content.json";
 
-interface LearnCard {
+interface Clue {
+  name: string;
+  description: string;
+  emoji: string;
+}
+
+interface ChallengeData {
+  type: string;
+  instruction?: string;
+  steps?: string[];
+  questions?: Array<{
+    question: string;
+    options: string[];
+    correct: number;
+    explanation: string;
+  }>;
+}
+
+interface ClueTrailLesson {
+  lessonId: number;
   title: string;
+  objective: string;
   content: string;
-  image: string;
+  clue: Clue;
+  challengeType: string;
+  challengeData: ChallengeData;
 }
 
-interface QuizQuestion {
-  question: string;
-  options: string[];
-  correct: number;
-  explanation: string;
+interface FinalChallenge {
+  type: string;
+  title: string;
+  description: string;
+  instructions: string;
+  requiredClues: string[];
+  puzzle: {
+    positions: Array<{
+      id: string;
+      clue: string;
+      label: string;
+    }>;
+    connections: string[];
+  };
 }
 
-interface Mission {
-  id: string;
+interface Treasure {
+  name: string;
+  badge: string;
+  description: string;
+  unlocks: string[];
+}
+
+interface TreasureHunt {
+  subject: string;
+  treasureMap: string;
+  treasureId: string;
   title: string;
   description: string;
   difficulty: number;
   xpReward: number;
-  learnCards: LearnCard[];
-  quizQuestions: QuizQuestion[];
+  clueTrail: ClueTrailLesson[];
+  finalChallenge: FinalChallenge;
+  treasure: Treasure;
 }
 
-export function useMissionData(missionId: string) {
-  return useQuery<Mission>({
-    queryKey: ['/api/mission', missionId],
+export function useTreasureData(treasureId: string) {
+  return useQuery<TreasureHunt>({
+    queryKey: ['/api/treasure', treasureId],
     queryFn: async () => {
-      // In a real app, this would fetch from the backend API
-      // For now, return the mission data from the imported JSON
-      if (missionId === "water-purifier") {
-        return missionContent as Mission;
+      // In a real app, this would fetch from Firebase Firestore
+      // For now, return the treasure data from the imported JSON
+      if (treasureId === "water-cycle") {
+        return treasureContent as TreasureHunt;
       }
-      throw new Error(`Mission ${missionId} not found`);
+      throw new Error(`Treasure ${treasureId} not found`);
     },
-    staleTime: Infinity, // Mission content rarely changes
+    staleTime: Infinity, // Treasure content rarely changes
   });
+}
+
+// Legacy function for backward compatibility 
+export function useMissionData(missionId: string) {
+  return useTreasureData(missionId === "water-purifier" ? "water-cycle" : missionId);
 }

@@ -1,64 +1,97 @@
 {
-  "id": "water-purifier",
-  "title": "Mission: Water Purifier",
-  "description": "Learn how water purification systems work and help design a clean water solution for your village.",
-  "difficulty": 3,
-  "xpReward": 500,
-  "learnCards": [
+  "subject": "biology",
+  "treasureMap": "Biology Adventures",
+  "treasureId": "water-cycle", 
+  "title": "The Water Cycle Treasure",
+  "description": "Follow the clue trail to discover how water travels through nature in an endless cycle. Collect three magical clues to unlock the treasure!",
+  "difficulty": 2,
+  "xpReward": 300,
+  "clueTrail": [
     {
-      "title": "Understanding Water Contamination",
-      "content": "Water contamination occurs when harmful substances make water unsafe for drinking, cooking, or other uses. Common contaminants include bacteria, viruses, chemicals, and heavy metals. In rural areas, contamination often comes from agricultural runoff, improper waste disposal, and lack of sanitation infrastructure. Understanding the sources of contamination is the first step toward developing effective purification strategies.",
-      "image": "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
+      "lessonId": 1,
+      "title": "The Journey Begins - Evaporation", 
+      "objective": "Understand how water transforms from liquid to vapor and rises into the atmosphere",
+      "content": "When the sun heats up water in rivers, lakes, and oceans, it turns into invisible water vapor that rises up into the sky. This is called evaporation! Just like when you see steam rising from a hot cup of tea, water changes from liquid to gas when it gets warm enough. The warmer it gets, the faster water evaporates.",
+      "clue": {
+        "name": "Glowing Water Drop",
+        "description": "A magical drop of water ascending to the clouds",
+        "emoji": "🌊"
+      },
+      "challengeType": "Simple Simulation",
+      "challengeData": {
+        "type": "evaporation_sim",
+        "instruction": "Drag the sun to shine on the water body and watch evaporation happen!"
+      }
     },
     {
-      "title": "Physical Filtration Methods",
-      "content": "Physical filtration removes particles and sediments from water using barriers like sand, gravel, and cloth filters. These methods are effective for removing larger contaminants but may not eliminate bacteria or chemicals. Multi-stage filtration systems combine different materials to improve effectiveness. Common physical filters include slow sand filters, rapid sand filters, and membrane filters.",
-      "image": "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
+      "lessonId": 2,
+      "title": "Cloud Formation - Condensation",
+      "objective": "Learn how water vapor cools and forms clouds in the atmosphere", 
+      "content": "High up in the sky, the water vapor gets cold and turns back into tiny water droplets. These droplets stick to dust particles in the air and form clouds! This process is called condensation - the opposite of evaporation. You can see condensation on a cold glass on a hot day.",
+      "clue": {
+        "name": "Silver Cloud",
+        "description": "A mystical cloud filled with tiny water droplets",
+        "emoji": "☁️"
+      },
+      "challengeType": "Sequencing Game",
+      "challengeData": {
+        "type": "sequence_ordering",
+        "steps": [
+          "Water vapor rises high into the atmosphere",
+          "Temperature drops as altitude increases",
+          "Water vapor cools and condenses around dust particles",
+          "Tiny droplets cluster together to form clouds"
+        ]
+      }
     },
     {
-      "title": "Chemical Purification",
-      "content": "Chemical purification uses substances like chlorine, iodine, or water purification tablets to kill harmful microorganisms. This method is effective against bacteria and viruses but requires careful dosing to avoid harmful side effects. It's often combined with physical filtration for best results. Chemical treatment can also include coagulation and flocculation processes to remove dissolved particles.",
-      "image": "https://images.unsplash.com/photo-1576671081837-49000212a370?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
-    },
-    {
-      "title": "Advanced Purification Technologies",
-      "content": "Advanced methods include UV sterilization, reverse osmosis, and distillation. UV light kills microorganisms without chemicals, while reverse osmosis removes almost all contaminants. These technologies are more expensive but provide the highest level of purification. Other advanced methods include ozonation, activated carbon filtration, and ion exchange systems.",
-      "image": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
+      "lessonId": 3,
+      "title": "Return to Earth - Precipitation",
+      "objective": "Discover how water returns to Earth as rain, snow, or hail",
+      "content": "When the water droplets in clouds get too heavy, they fall back down to Earth! This can happen as rain, snow, sleet, or even hail, depending on how cold it is. This falling water is called precipitation. The water then flows into rivers and oceans, and the cycle starts all over again!",
+      "clue": {
+        "name": "Crystal Raindrop", 
+        "description": "A perfect raindrop with Earth's reflection inside",
+        "emoji": "🌧️"
+      },
+      "challengeType": "Interactive Quiz",
+      "challengeData": {
+        "questions": [
+          {
+            "question": "What happens when water droplets in clouds become too heavy?",
+            "options": ["They evaporate", "They fall as precipitation", "They turn into steam", "They disappear"],
+            "correct": 1,
+            "explanation": "When water droplets become too heavy to float in the air, gravity pulls them down as precipitation!"
+          },
+          {
+            "question": "Which of these is NOT a type of precipitation?",
+            "options": ["Rain", "Snow", "Evaporation", "Hail"], 
+            "correct": 2,
+            "explanation": "Evaporation is when water turns to vapor and goes up, not when it comes down as precipitation!"
+          }
+        ]
+      }
     }
   ],
-  "quizQuestions": [
-    {
-      "question": "What is the most common cause of water contamination in rural areas?",
-      "options": [
-        "Industrial pollution from factories",
-        "Agricultural runoff and improper waste disposal",
-        "Natural mineral deposits",
-        "Excessive rainfall"
+  "finalChallenge": {
+    "type": "Word Puzzle", 
+    "title": "Unlock the Water Cycle Treasure",
+    "description": "Use your 3 collected clues to complete the water cycle puzzle!",
+    "instructions": "Place each clue in the correct position and complete the cycle by filling in the connecting words.",
+    "requiredClues": ["🌊", "☁️", "🌧️"],
+    "puzzle": {
+      "positions": [
+        {"id": "evaporation", "clue": "🌊", "label": "Water rises as vapor"},
+        {"id": "condensation", "clue": "☁️", "label": "Vapor forms clouds"}, 
+        {"id": "precipitation", "clue": "🌧️", "label": "Water falls to Earth"}
       ],
-      "correct": 1,
-      "explanation": "Agricultural runoff and improper waste disposal are the primary causes of water contamination in rural areas due to limited infrastructure and widespread farming activities that can introduce pesticides, fertilizers, and organic waste into water sources."
-    },
-    {
-      "question": "Which filtration method is most effective for removing bacteria and viruses?",
-      "options": [
-        "Sand filtration only",
-        "Cloth filtration",
-        "Combined chemical treatment and UV sterilization",
-        "Boiling water for 1 minute"
-      ],
-      "correct": 2,
-      "explanation": "Combined chemical treatment and UV sterilization provides the most comprehensive protection against microorganisms. While each method is effective individually, combining them ensures maximum pathogen removal and provides backup protection."
-    },
-    {
-      "question": "What is the main advantage of UV sterilization over chemical treatment?",
-      "options": [
-        "It's much cheaper to implement",
-        "It doesn't require electricity",
-        "It kills microorganisms without adding chemicals to the water",
-        "It works faster than chemical treatment"
-      ],
-      "correct": 2,
-      "explanation": "UV sterilization's main advantage is that it effectively kills microorganisms without introducing chemicals into the water supply. This means there are no chemical residues, taste changes, or potential health concerns from chemical additives, making it ideal for communities concerned about water quality and taste."
+      "connections": ["collection", "runoff", "infiltration"]
     }
-  ]
+  },
+  "treasure": {
+    "name": "Master of the Water Cycle",
+    "badge": "💎",
+    "description": "You've discovered how water travels through nature in an endless cycle!",
+    "unlocks": ["Advanced Weather Patterns", "Climate Adventures"]
+  }
 }
