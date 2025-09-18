@@ -217,10 +217,11 @@
         if(username && password){
           if(isTeacher) {
             localStorage.setItem('teacherName', username);
-            window.location.href = 'teacher_dashboard.html';
+            window.location.href = 'teacher-dashboard.html';
           } else {
             localStorage.setItem('studentName', username);
-            window.location.href = 'student_dashboard.html';
+            // Redirect to React app for students
+            window.location.href = '/treasure-hunt';
           }
         } else {
           alert('Please enter login details.');

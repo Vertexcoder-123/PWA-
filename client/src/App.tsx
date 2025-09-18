@@ -12,8 +12,8 @@ function Router() {
     <Switch>
       <Route path="/treasure-hunt/:subject?" component={StudentDashboard} />
       <Route path="/" component={() => {
-        // Redirect to the static login page
-        window.location.href = '/login.html';
+        // Redirect to the static home page
+        window.location.href = '/home.html';
         return null;
       }} />
       <Route component={NotFound} />
