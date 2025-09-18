@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRoute } from "wouter";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -9,19 +10,32 @@ import { useTreasureData } from "@/hooks/use-mission-data";
 import { Trophy, BookOpen, Gamepad2, Star, Medal, CheckCircle, Leaf, Sprout } from "lucide-react";
 
 export default function StudentDashboard() {
+  const [, params] = useRoute("/treasure-hunt/:subject");
+  const subject = params?.subject || "water-cycle";
+  
   const [isLearnModalOpen, setIsLearnModalOpen] = useState(false);
   const [isGameModalOpen, setIsGameModalOpen] = useState(false);
   const [isConquerModalOpen, setIsConquerModalOpen] = useState(false);
-  const { data: treasure, isLoading } = useTreasureData("water-cycle");
+  const { data: treasure, isLoading } = useTreasureData(subject);
 
   const mockUser = {
-    name: "Alex Kumar",
+    name: "Student Explorer",
     level: 3,
-    title: "Explorer",
+    title: "Knowledge Hunter",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=64&h=64&q=80",
     totalXp: 1250,
     streak: 12,
     badges: 8,
+  };
+
+  const subjectMap: { [key: string]: string } = {
+    english: "Reading & Writing",
+    math: "Mathematics",
+    physics: "Physics",
+    biology: "Biology", 
+    social: "Social Studies",
+    hindi: "Hindi",
+    telugu: "Telugu"
   };
 
   const completedMissions = [
@@ -151,7 +165,7 @@ export default function StudentDashboard() {
                 className="w-full h-full object-cover" 
               />
               <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1 text-sm font-medium">
-                Biology Treasure
+                {subjectMap[subject] || subject} Treasure
               </div>
             </div>
             
