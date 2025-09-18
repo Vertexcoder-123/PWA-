@@ -1,0 +1,33 @@
+Project Brief & Instructions
+1. Project Goal: Your task is to create a prototype for a "Gamified learning platform for rural education." The platform must be an offline-first Progressive Web App (PWA). The prototype should focus on the student's "Quest Journey," demonstrating the "Learn-Play-Conquer Loop" for a single mission.
+2. Core Technologies: * 
+Frontend: Use HTML5, CSS3, and modern JavaScript (ES6+).
+* 
+Gamification Engine: Use Phaser.js.
+* 
+Backend & Database: Use Firebase Firestore and enable its offline persistence feature.
+* 
+Offline Strategy: Use Service Workers to cache the application shell and assets.
+* 
+Content Structure: Use a JSON-based structure for mission content.
+Build Plan
+Step 1: Create the File Structure First, create the following file and folder structure:
+/index.html
+/teacher.html
+/style.css
+/app.js
+/game.js
+/sw.js
+/firebase-config.js
+/content.json
+/assets/
+Step 2: Set up the HTML Shell and CSS In index.html, create the basic HTML structure for the student's "Quest Journey" page. Add a main container for mission cards. In style.css, add clean, mobile-first styling. Make it colorful and friendly.
+Step 3: Configure Firebase In firebase-config.js, generate the boilerplate code to initialize the Firebase app. Include the firebaseConfig object with placeholder values. Crucially, enable Firestore's offline persistence.
+Step 4: Create the Mission Content In 
+content.json, create the data for one complete mission titled "Mission: Water Purifier". The JSON should include an array of "Learn" cards with text, and an array of "Conquer" quiz questions with multiple-choice options and a correct answer.
+Step 5: Build the Student UI Logic In app.js, write the JavaScript to:
+1.	Fetch the mission data from content.json.
+2.	Dynamically create and display the mission card on the index.html page.
+3.	Handle the logic for the "Learn" (displaying cards) and "Conquer" (displaying the quiz) phases. When a quiz is answered correctly, log the result to the console and connect it to a function that will save to Firestore.
+Step 6: Create a Placeholder Game Scene In game.js, write the code for a very simple Phaser.js scene. It only needs to display a title screen with the text "Play Simulation - Coming Soon". This will serve as the placeholder for the "Play" part of the loop.
+Step 7: Implement the PWA Service Worker In sw.js, generate the code for a basic Service Worker that uses a "cache-first" strategy. It should cache index.html, style.css, app.js, game.js, and content.json. Then, add the code to app.js to register this service worker.
