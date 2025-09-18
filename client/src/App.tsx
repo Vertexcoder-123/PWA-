@@ -10,7 +10,12 @@ import { OfflineIndicator } from "@/components/offline-indicator";
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={StudentDashboard} />
+      <Route path="/treasure-hunt/:subject?" component={StudentDashboard} />
+      <Route path="/" component={() => {
+        // Redirect to the static login page
+        window.location.href = '/login.html';
+        return null;
+      }} />
       <Route component={NotFound} />
     </Switch>
   );
