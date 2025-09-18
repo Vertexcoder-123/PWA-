@@ -6,6 +6,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { ChevronLeft, ChevronRight, X, Trophy, Flag } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { FirebaseService } from "@/services/firebase-service";
 
 interface QuizQuestion {
   question: string;
@@ -104,7 +105,7 @@ export function ConquerPhaseModal({ isOpen, onClose, treasure }: ConquerPhaseMod
     }
   };
 
-  const handleComplete = () => {
+  const handleComplete = async () => {
     const correctAnswers = quizQuestions.reduce((count, question, index) => {
       const questionKey = `q${index}`;
       const userAnswer = parseInt(answers[questionKey] || "0");
@@ -119,13 +120,26 @@ export function ConquerPhaseModal({ isOpen, onClose, treasure }: ConquerPhaseMod
       description: `You scored ${correctAnswers}/${quizQuestions.length} and earned ${xpEarned} XP!`,
     });
 
-    // TODO: Save progress to Firestore
-    console.log('Treasure hunt completed:', {
-      score: correctAnswers,
-      total: quizQuestions.length,
-      percentage: score,
-      xpEarned
-    });
+    // Save progress to Firebase
+    try {
+      const userId = 'demo-user'; // In production, get from auth
+      await FirebaseService.completeTreasure(
+        userId,
+        'water-cycle',
+        score,
+        xpEarned
+      );
+      console.log('Progress saved to Firebase successfully');
+    } catch (error) {
+      console.error('Failed to save progress:', error);
+      // Save offline for later sync
+      await FirebaseService.savePendingData({
+        userId: 'demo-user',
+        treasureId: 'water-cycle',
+        score,
+        xpEarned
+      });
+    }
 
     setIsComplete(true);
   };
