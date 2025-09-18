@@ -1,0 +1,77 @@
+Project Brief: Sarathi - The Treasure Hunter's Path
+1. Project Goal & Vision:
+Your task is to build a prototype for "Sarathi," a 
+
+gamified learning platform for rural education. The core user experience is a 
+
+"Treasure Hunter's Path".
+
+The grand vision is as follows: Each subject is a "Treasure Map," and each topic is a "Small Treasure". To find a treasure, students follow a "Clue Trail" of lessons. Each lesson contains a mini-game challenge (like a quiz or puzzle). Completing a lesson's challenge awards the student a "clue". After collecting all clues for a topic, they face a final challenge to find the treasure.
+
+2. Core Technologies:
+* 
+
+Frontend: HTML5, CSS3, modern JavaScript (ES6+).
+
+* 
+
+Gamification Engine: Phaser.js for the final challenge game.
+
+* 
+
+Backend & Database: Firebase Firestore with offline persistence enabled.
+
+* 
+
+Offline Strategy: Service Workers to cache the application and make it work offline.
+
+* 
+
+Content Structure: A JSON-based structure for all mission and quiz content.
+
+3. Prototype Scope:
+For this initial prototype, we will build one complete 'Small Treasure' hunt.
+
+Subject (Treasure Map): Biology
+
+Topic (Small Treasure): The Water Cycle
+
+Step-by-Step Build Plan
+Step 1: Create the File Structure
+Create a standard web project structure: index.html, style.css, app.js, game.js, sw.js, firebase-config.js, and content.json.
+
+Step 2: Setup Firebase and PWA Shell
+
+In firebase-config.js, generate the boilerplate to initialize Firebase. Ensure you enable Firestore's offline persistence.
+
+In sw.js, create a basic Service Worker to cache the core app files.
+
+Step 3: Create the Mission Content
+In content.json, create the data for "The Water Cycle" topic. This JSON should structure 3 lessons. For each lesson, include:
+
+A learning objective.
+
+A "clue" (e.g., "a puzzle piece image name").
+
+A gameType ("Quiz", "WordPuzzle", etc.).
+
+The data for that game (e.g., quiz questions or words to unscramble).
+
+Step 4: Build the Student UI ("The Clue Trail")
+In index.html and style.css, build the user interface. It should show the 3 lessons for "The Water Cycle" as steps on a path. In app.js, write the code to fetch data from content.json and display these lessons.
+
+Step 5: Implement the Mini-Game Challenges
+In app.js, write JavaScript functions for the mini-games. When a user clicks a lesson, launch the corresponding game type (e.g., an Interactive Quiz or Word Puzzle) using the data from content.json. On successful completion, reveal the "clue" to the user and save their progress to Firestore.
+
+Step 6: Build the Final Challenge Game
+In 
+
+game.js, use Phaser.js to create the final challenge. This game should require the user to use the 3 clues they've collected. For the prototype, this can be a simple sequencing game where they drag the 3 puzzle pieces into the correct order to reveal the treasure.
+
+Step 7: Integrate the Full Flow
+In app.js, write the logic to check Firestore for the collected clues. Once all 3 clues for "The Water Cycle" are collected, unlock and launch the final Phaser.js game from game.js. When the player wins, save the "Water Cycle Treasure" to their profile in Firestore.
+
+Step 8: Implement Full Offline Caching
+In the final step, update the 
+
+Service Worker (sw.js) to cache all necessary files, including game.js, content.json, and any image assets, ensuring the entire treasure hunt works offline
