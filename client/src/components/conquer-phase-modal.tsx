@@ -14,58 +14,66 @@ interface QuizQuestion {
   explanation: string;
 }
 
-interface Mission {
-  id: string;
+interface FinalChallenge {
+  type: string;
   title: string;
-  quizQuestions: QuizQuestion[];
+  description: string;
+  instructions: string;
+  questions?: QuizQuestion[];
+}
+
+interface TreasureHunt {
+  treasureId: string;
+  title: string;
+  finalChallenge: FinalChallenge;
 }
 
 interface ConquerPhaseModalProps {
   isOpen: boolean;
   onClose: () => void;
-  mission?: Mission;
+  treasure?: TreasureHunt;
 }
 
-export function ConquerPhaseModal({ isOpen, onClose, mission }: ConquerPhaseModalProps) {
+export function ConquerPhaseModal({ isOpen, onClose, treasure }: ConquerPhaseModalProps) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [showFeedback, setShowFeedback] = useState<Record<string, boolean>>({});
   const [isComplete, setIsComplete] = useState(false);
   const { toast } = useToast();
 
-  const quizQuestions: QuizQuestion[] = mission?.quizQuestions || [
+  const quizQuestions: QuizQuestion[] = treasure?.finalChallenge?.questions || [
     {
-      question: "What is the most common cause of water contamination in rural areas?",
+      question: "What provides the energy that drives the water cycle?",
       options: [
-        "Industrial pollution from factories",
-        "Agricultural runoff and improper waste disposal",
-        "Natural mineral deposits",
-        "Excessive rainfall"
+        "Wind currents in the atmosphere",
+        "The rotation of the Earth",
+        "Heat energy from the Sun",
+        "Gravity from the Moon"
+      ],
+      correct: 2,
+      explanation: "The Sun provides the heat energy that causes water to evaporate from oceans, rivers, and lakes, which starts the water cycle."
+    },
+    {
+      question: "What happens to water vapor when it rises high in the atmosphere?",
+      options: [
+        "It becomes heavier and falls immediately",
+        "It cools down and condenses into water droplets",
+        "It breaks apart into hydrogen and oxygen",
+        "It gets warmer and expands"
       ],
       correct: 1,
-      explanation: "Agricultural runoff and improper waste disposal are the primary causes of water contamination in rural areas due to limited infrastructure."
+      explanation: "As water vapor rises, it cools at higher altitudes and condenses back into tiny water droplets that form clouds."
     },
     {
-      question: "Which filtration method is most effective for removing bacteria and viruses?",
+      question: "Which of these is NOT a form of precipitation?",
       options: [
-        "Sand filtration only",
-        "Cloth filtration",
-        "Combined chemical treatment and UV sterilization",
-        "Boiling water for 1 minute"
+        "Rain",
+        "Snow",
+        "Evaporation",
+        "Hail"
       ],
       correct: 2,
-      explanation: "Combined chemical treatment and UV sterilization provides the most comprehensive protection against microorganisms."
-    },
-    {
-      question: "What is the main advantage of UV sterilization over chemical treatment?",
-      options: [
-        "It's much cheaper to implement",
-        "It doesn't require electricity",
-        "It kills microorganisms without adding chemicals to the water",
-        "It works faster than chemical treatment"
-      ],
-      correct: 2,
-      explanation: "UV sterilization's main advantage is that it effectively kills microorganisms without introducing chemicals into the water supply."
+      explanation: "Evaporation is the process where water changes from liquid to vapor. Rain, snow, and hail are all forms of precipitation where water returns to Earth."
     }
   ];
 
@@ -107,12 +115,12 @@ export function ConquerPhaseModal({ isOpen, onClose, mission }: ConquerPhaseModa
     const xpEarned = 500 + (score === 100 ? 100 : 0);
 
     toast({
-      title: "Mission Complete!",
+      title: "Treasure Found!",
       description: `You scored ${correctAnswers}/${quizQuestions.length} and earned ${xpEarned} XP!`,
     });
 
-    // TODO: Save progress to backend
-    console.log('Mission completed:', {
+    // TODO: Save progress to Firestore
+    console.log('Treasure hunt completed:', {
       score: correctAnswers,
       total: quizQuestions.length,
       percentage: score,
@@ -135,7 +143,7 @@ export function ConquerPhaseModal({ isOpen, onClose, mission }: ConquerPhaseModa
         <div className="sticky top-0 bg-background border-b p-4">
           <DialogHeader>
             <div className="flex items-center justify-between">
-              <DialogTitle>Conquer Phase: Final Quiz</DialogTitle>
+              <DialogTitle>Final Challenge: {treasure?.finalChallenge?.title || "Master the Water Cycle"}</DialogTitle>
               <Button variant="ghost" size="sm" onClick={onClose} data-testid="button-close-conquer">
                 <X className="h-4 w-4" />
               </Button>

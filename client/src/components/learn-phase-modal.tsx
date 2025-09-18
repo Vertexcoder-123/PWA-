@@ -4,48 +4,63 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { ChevronLeft, ChevronRight, X, Gamepad2 } from "lucide-react";
 
-interface LearnCard {
+interface ClueTrailLesson {
+  lessonId: number;
   title: string;
   content: string;
-  image: string;
+  clue: {
+    name: string;
+    description: string;
+    emoji: string;
+  };
 }
 
-interface Mission {
-  id: string;
+interface TreasureHunt {
+  treasureId: string;
   title: string;
-  learnCards: LearnCard[];
+  clueTrail: ClueTrailLesson[];
 }
 
 interface LearnPhaseModalProps {
   isOpen: boolean;
   onClose: () => void;
   onComplete: () => void;
-  mission?: Mission;
+  treasure?: TreasureHunt;
 }
 
-export function LearnPhaseModal({ isOpen, onClose, onComplete, mission }: LearnPhaseModalProps) {
+export function LearnPhaseModal({ isOpen, onClose, onComplete, treasure }: LearnPhaseModalProps) {
   const [currentCard, setCurrentCard] = useState(0);
 
-  const learnCards: LearnCard[] = mission?.learnCards || [
+  const learnCards: ClueTrailLesson[] = treasure?.clueTrail || [
     {
-      title: "Understanding Water Contamination",
-      content: "Water contamination occurs when harmful substances make water unsafe for drinking, cooking, or other uses. Common contaminants include bacteria, viruses, chemicals, and heavy metals. In rural areas, contamination often comes from agricultural runoff, improper waste disposal, and lack of sanitation infrastructure.",
-      image: "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
+      lessonId: 1,
+      title: "Evaporation: Water's Journey Upward",
+      content: "Evaporation is the first step in the water cycle. When the sun heats water in rivers, lakes, and oceans, it transforms from liquid to invisible water vapor that rises into the atmosphere. This process is crucial for moving water from Earth's surface to the sky, where it can form clouds.",
+      clue: {
+        name: "The Sun's Power",
+        description: "Look for how heat energy transforms liquid water",
+        emoji: "🌊"
+      }
     },
     {
-      title: "Physical Filtration Methods",
-      content: "Physical filtration removes particles and sediments from water using barriers like sand, gravel, and cloth filters. These methods are effective for removing larger contaminants but may not eliminate bacteria or chemicals. Multi-stage filtration systems combine different materials to improve effectiveness.",
-      image: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
+      lessonId: 2,
+      title: "Condensation: Clouds Are Born",
+      content: "As water vapor rises high in the atmosphere, it cools down and transforms back into tiny water droplets. These droplets cluster together to form clouds. This process is called condensation, and it's how nature prepares water to return to Earth.",
+      clue: {
+        name: "Cloud Formation",
+        description: "Watch how cooling vapor becomes visible again",
+        emoji: "☁️"
+      }
     },
     {
-      title: "Chemical Purification",
-      content: "Chemical purification uses substances like chlorine, iodine, or water purification tablets to kill harmful microorganisms. This method is effective against bacteria and viruses but requires careful dosing to avoid harmful side effects. It's often combined with physical filtration for best results.",
-      image: "https://images.unsplash.com/photo-1576671081837-49000212a370?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
-    },
-    {
-      title: "Advanced Purification Technologies",
-      content: "Advanced methods include UV sterilization, reverse osmosis, and distillation. UV light kills microorganisms without chemicals, while reverse osmosis removes almost all contaminants. These technologies are more expensive but provide the highest level of purification.",
-      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
+      lessonId: 3,
+      title: "Precipitation: Nature's Gift Returns",
+      content: "When water droplets in clouds become too heavy, they fall back to Earth as precipitation - rain, snow, sleet, or hail. This completes the water cycle and brings fresh water back to the land, rivers, and oceans where the cycle begins again.",
+      clue: {
+        name: "Water's Return",
+        description: "Discover how water comes back to Earth",
+        emoji: "🌧️"
+      }
     }
   ];
 
@@ -78,7 +93,7 @@ export function LearnPhaseModal({ isOpen, onClose, onComplete, mission }: LearnP
         <div className="sticky top-0 bg-background border-b p-4">
           <DialogHeader>
             <div className="flex items-center justify-between">
-              <DialogTitle>Learn Phase: Water Purification</DialogTitle>
+              <DialogTitle>Clue Trail: {treasure?.title || "The Water Cycle Treasure"}</DialogTitle>
               <Button variant="ghost" size="sm" onClick={onClose} data-testid="button-close-learn">
                 <X className="h-4 w-4" />
               </Button>
@@ -94,11 +109,9 @@ export function LearnPhaseModal({ isOpen, onClose, onComplete, mission }: LearnP
 
         <div className="p-6 overflow-y-auto">
           <div className="text-center mb-6">
-            <img 
-              src={learnCards[currentCard]?.image}
-              alt={learnCards[currentCard]?.title}
-              className="w-full h-48 object-cover rounded-lg mb-4" 
-            />
+            <div className="w-full h-48 bg-gradient-to-br from-blue-400 via-cyan-300 to-green-200 rounded-lg mb-4 flex items-center justify-center">
+              <span className="text-6xl">{learnCards[currentCard]?.clue?.emoji}</span>
+            </div>
           </div>
           <h3 className="text-lg font-semibold mb-4" data-testid="text-card-title">
             {learnCards[currentCard]?.title}
