@@ -1,7 +1,7 @@
 {
-  "name": "EduQuest - Gamified Learning Platform",
-  "short_name": "EduQuest",
-  "description": "Offline-first gamified learning platform for rural education",
+  "name": "Sarathi - The Treasure Hunter's Path",
+  "short_name": "Sarathi",
+  "description": "The Treasure Hunter's Path: Gamified learning platform for rural education",
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#3b82f6",

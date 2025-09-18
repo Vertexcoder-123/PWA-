@@ -1,8 +1,8 @@
-# EduQuest - Gamified Learning Platform
+# Sarathi - The Treasure Hunter's Path
 
 ## Overview
 
-EduQuest is an offline-first Progressive Web App (PWA) designed as a gamified learning platform for rural education. The platform combines interactive educational content with game-like elements to engage students in subjects like water purification, renewable energy, and sustainable agriculture. The application features a three-phase learning approach: Learn (educational content), Play (interactive simulations), and Conquer (quiz assessments), with comprehensive progress tracking and achievement systems.
+Sarathi is an offline-first Progressive Web App (PWA) designed as "The Treasure Hunter's Path" - a gamified learning platform for rural education. Each subject is a "Treasure Map" and each topic is a "Small Treasure". Students follow a "Clue Trail" of lessons, completing mini-game challenges to collect clues. After gathering all clues for a topic, they face a final challenge to unlock the treasure. The platform combines interactive educational content with adventure-game elements to engage students in subjects like Biology, with comprehensive progress tracking and achievement systems.
 
 ## User Preferences
 

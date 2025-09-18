@@ -1,4 +1,4 @@
-const CACHE_NAME = 'eduquest-v1';
+const CACHE_NAME = 'sarathi-v1';
 const urlsToCache = [
   '/',
   '/src/main.tsx',
@@ -92,6 +92,6 @@ self.addEventListener('push', event => {
   };
 
   event.waitUntil(
-    self.registration.showNotification('EduQuest', options)
+    self.registration.showNotification('Sarathi', options)
   );
 });
